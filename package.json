@@ -7,8 +7,8 @@
     "start": "ng serve",
     "build": "ng build -prod",
     "postbuild": "npm run deploy",
-    "predeploy": "rimraf ../crypto/src/main/resources/static && mkdirp ../crypto/src/main/resources/static",
-    "deploy": "copyfiles -f dist/** ../crypto/src/main/resources/static",
+    "predeploy": "rimraf ../bitwatcher/src/main/resources/static && mkdirp ../bitwatcher/src/main/resources/static",
+    "deploy": "copyfiles -f dist/** ../bitwatcher/src/main/resources/static",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
