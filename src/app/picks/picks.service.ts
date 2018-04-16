@@ -42,8 +42,8 @@ export class PicksService{
       }).catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getPrices(str: string) {
-    return this.http.get(str)
+  getPrices() {
+    return this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,ETC,GBX&tsyms=USD")
       .map(result => this.result = result);
   }
 

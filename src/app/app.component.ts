@@ -15,7 +15,7 @@ export class AppComponent {
   // constructor(private _data: DataService) {
   //
   // }
-
+  //
   // ngOnInit() {
   //   this._data.getPrices()
   //     .subscribe(res => {
