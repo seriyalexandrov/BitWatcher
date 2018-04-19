@@ -45,13 +45,14 @@ export class PicksService{
   }
 
 
-  getNamesOfCurrencies(id:number) : Observable<String> {
-    this.tempUrl = this.picksUrl + "/getCurrenciesNames";
+  getCurrencies(id:number) : Observable<string> {
+    this.tempUrl = this.picksUrl + "/getCurrenciesForUser";
     return this.http.get(`${this.tempUrl}/${id}`)
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
-  getPrices(id:number) {
-    return this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + this.getNamesOfCurrencies(id) + "&tsyms=USD")
+
+  getPrices(names:string) {
+    return this.http.get(names)
     //return this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,ETC,GBX&tsyms=USD") - it works
       .map(result => this.result = result);
   }

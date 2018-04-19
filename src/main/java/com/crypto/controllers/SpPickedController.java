@@ -46,9 +46,9 @@ public class SpPickedController {
       return new ResponseEntity(HttpStatus.NO_CONTENT);
   }
 
-  @RequestMapping("/getCurrenciesNames/{id}")
+  @RequestMapping("/getCurrenciesForUser/{id}")
   public String getCurrenciesNames(@PathVariable Integer id){
-    return pickedService.getNamesOfCurrenciesByUser(userRepository.findOne(id));
+    return pickedService.getCurrenciesByUser(userRepository.findOne(id));
   }
 
 

@@ -29,7 +29,7 @@ public class PickedService{
     }
   }
 
-  public String getNamesOfCurrenciesByUser(DBUser user){
+  public String getCurrenciesByUser(DBUser user){
     String names = "";
     List<DBPicked> arr = pickedRepository.findAllByUser(user);
     for(int i = 0; i < arr.size();i++){
@@ -39,7 +39,7 @@ public class PickedService{
       }
         names += arr.get(i).getCurrency().getName() + ",";
       }
-      return names;
+      return "https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + names + "&tsyms=USD";
   }
 
 }
