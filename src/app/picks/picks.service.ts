@@ -1,11 +1,12 @@
 import {Observable} from "rxjs/Observable";
 import {UserEntity} from "./user.entity";
-import {Http, Response} from '@angular/http';
+import {Response} from '@angular/http';
 import {Injectable} from "@angular/core";
 import {PickEntity} from "./picks.entity";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {CurrencyEntity} from "./currency.entity";
+import {HttpClient} from "@angular/common/http";
 
 
 @Injectable()
@@ -16,7 +17,7 @@ export class PicksService{
   private usersUrl = "http://localhost:8080/api/users";
   private tempUrl = "";
   result:any;
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
 
   getPicksById(id:number) : Observable<PickEntity[]> {
@@ -51,6 +52,7 @@ export class PicksService{
   }
   getPrices(id:number) {
     return this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + this.getNamesOfCurrencies(id) + "&tsyms=USD")
+    //return this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,ETC,GBX&tsyms=USD") - it works
       .map(result => this.result = result);
   }
 
