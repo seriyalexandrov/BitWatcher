@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {CurrencyEntity} from "./currency.entity";
 
+
 @Injectable()
 export class PicksService{
 
@@ -42,8 +43,14 @@ export class PicksService{
       }).catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getPrices() {
-    return this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,ETC,GBX&tsyms=USD")
+
+  getNamesOfCurrencies(id:number) : Observable<String> {
+    this.tempUrl = this.picksUrl + "/getCurrenciesNames";
+    return this.http.get(`${this.tempUrl}/${id}`)
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  getPrices(id:number) {
+    return this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + this.getNamesOfCurrencies(id) + "&tsyms=USD")
       .map(result => this.result = result);
   }
 

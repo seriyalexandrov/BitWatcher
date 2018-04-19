@@ -1,7 +1,9 @@
 package com.crypto.controllers;
 
 import com.crypto.entities.DBPicked;
+import com.crypto.entities.DBUser;
 import com.crypto.services.PickedRepository;
+import com.crypto.services.PickedService;
 import com.crypto.services.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,8 @@ public class SpPickedController {
   private PickedRepository pickedRepository;
   @Autowired
   private UserRepository userRepository;
+  @Autowired
+  private PickedService pickedService;
 
   @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
   public ResponseEntity delete(@PathVariable Integer id){
@@ -38,18 +42,13 @@ public class SpPickedController {
 
   @RequestMapping(value = "/add", method = RequestMethod.PUT)
   public ResponseEntity add(DBPicked newPick){
-    boolean isContain = false;
-    List<DBPicked> arr = findPicked(newPick.getUser().getUserId());
-    for(int i = 0; i < arr.size();i++){
-      if(arr.get(i).getCurrency().getCurrencyId() == newPick.getCurrency().getCurrencyId()){
-        isContain = true;
-      }
-    }
-    if(!isContain) {
-      pickedRepository.save(newPick);
+      pickedService.add(newPick);
       return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
-    return new ResponseEntity(HttpStatus.NOT_IMPLEMENTED);
+  }
+
+  @RequestMapping("/getCurrenciesNames/{id}")
+  public String getCurrenciesNames(@PathVariable Integer id){
+    return pickedService.getNamesOfCurrenciesByUser(userRepository.findOne(id));
   }
 
 
