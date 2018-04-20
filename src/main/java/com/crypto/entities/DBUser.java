@@ -1,5 +1,7 @@
 package com.crypto.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,6 +16,7 @@ public class DBUser {
   private String email;
   private Set<DBPicked> picks;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
   public Set<DBPicked> getPicks(){
     return picks;

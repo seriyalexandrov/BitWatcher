@@ -2,6 +2,7 @@ package com.crypto.services;
 
 import com.crypto.entities.DBPicked;
 import com.crypto.entities.DBUser;
+import com.crypto.entities.URLhack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +30,8 @@ public class PickedService{
     }
   }
 
-  public String getCurrenciesByUser(DBUser user){
+  public URLhack getCurrenciesByUser(DBUser user){
+    URLhack str = new URLhack();
     String names = "";
     List<DBPicked> arr = pickedRepository.findAllByUser(user);
     for(int i = 0; i < arr.size();i++){
@@ -39,7 +41,8 @@ public class PickedService{
       }
         names += arr.get(i).getCurrency().getName() + ",";
       }
-      return "https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + names + "&tsyms=USD";
+      str.setMyURL("https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + names + "&tsyms=USD");
+      return str;
   }
 
 }

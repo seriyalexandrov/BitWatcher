@@ -2,6 +2,7 @@ package com.crypto.controllers;
 
 import com.crypto.entities.DBPicked;
 import com.crypto.entities.DBUser;
+import com.crypto.entities.URLhack;
 import com.crypto.services.PickedRepository;
 import com.crypto.services.PickedService;
 import com.crypto.services.UserRepository;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 
 import java.util.List;
@@ -26,6 +28,7 @@ public class SpPickedController {
   private UserRepository userRepository;
   @Autowired
   private PickedService pickedService;
+
 
   @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
   public ResponseEntity delete(@PathVariable Integer id){
@@ -47,9 +50,10 @@ public class SpPickedController {
   }
 
   @RequestMapping("/getCurrenciesForUser/{id}")
-  public String getCurrenciesNames(@PathVariable Integer id){
+  public URLhack getCurrenciesNames(@PathVariable Integer id){
     return pickedService.getCurrenciesByUser(userRepository.findOne(id));
   }
+
 
 
   @RequestMapping("/find/{id}")

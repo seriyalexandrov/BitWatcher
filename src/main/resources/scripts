@@ -1,0 +1,39 @@
+/*INSERT INTO "currency"(name,)
+VALUES('Satoshi','Nakamoto','bitok','5859899','crypto_master@gmail.com');
+
+INSERT INTO "currency"(name,user_id)
+VALUES('LTC', 2);
+
+
+INSERT INTO "picked"(user_id, currency_id)
+VALUES(1, 2);
+
+
+Select * from users
+
+Select * from currency
+
+Select * from picked
+
+
+
+
+CREATE SEQUENCE pick_seq_id
+INCREMENT BY 1
+MINVALUE 1
+CACHE 1;
+CREATE TABLE picked(
+pick_id integer DEFAULT nextval('pick_seq_id') NOT NULL,
+user_id integer references users(user_id) NOT NULL,
+currency_id integer references currency(currency_id) NOT NULL,
+CONSTRAINT picks_identificator PRIMARY KEY (pick_id)
+)
+WITH (
+  OIDS=TRUE
+);
+
+
+
+*/
+
+Select * from picked

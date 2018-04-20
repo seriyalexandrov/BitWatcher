@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {CurrencyEntity} from "./currency.entity";
 import {HttpClient} from "@angular/common/http";
+import {URLHackEntity} from "./urlhack.entity";
 
 
 @Injectable()
@@ -45,7 +46,7 @@ export class PicksService{
   }
 
 
-  getCurrencies(id:number) : Observable<string> {
+  getCurrencies(id:number) : Observable<URLHackEntity> {
     this.tempUrl = this.picksUrl + "/getCurrenciesForUser";
     return this.http.get(`${this.tempUrl}/${id}`)
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));

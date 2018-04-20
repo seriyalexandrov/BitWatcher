@@ -1,5 +1,7 @@
 package com.crypto.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,8 +11,8 @@ public class DBPicked {
   private DBUser user;
   private DBCurrency currency;
 
-
-  @ManyToOne(fetch = FetchType.LAZY)
+ // @JsonIgnore
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id")
   public DBUser getUser(){
     return user;
@@ -19,7 +21,8 @@ public class DBPicked {
     this.user = user;
   }
 
-  @ManyToOne(fetch = FetchType.LAZY)
+ // @JsonIgnore
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "currency_id")
   public DBCurrency getCurrency(){
     return currency;
