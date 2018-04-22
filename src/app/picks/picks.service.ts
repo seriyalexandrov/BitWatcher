@@ -18,6 +18,7 @@ export class PicksService{
   private usersUrl = "http://localhost:8080/api/users";
   private tempUrl = "";
   result:any;
+  names:any;
   constructor(private http: HttpClient) {}
 
 
@@ -49,12 +50,14 @@ export class PicksService{
   getCurrencies(id:number) : Observable<URLHackEntity> {
     this.tempUrl = this.picksUrl + "/getCurrenciesForUser";
     return this.http.get(`${this.tempUrl}/${id}`)
+      .map(result => this.names = result)
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getPrices(names:string) {
-    return this.http.get(names)
-    //return this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,ETC,GBX&tsyms=USD") - it works
+    //return this.http.get(names)
+
+    return this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,ETC,GBX&tsyms=USD")
       .map(result => this.result = result);
   }
 

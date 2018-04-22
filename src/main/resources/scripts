@@ -33,6 +33,37 @@ WITH (
 );
 
 
+CREATE TABLE public.currency
+(
+  name character varying(80) NOT NULL,
+  currency_id integer NOT NULL DEFAULT nextval('currency_seq_id'::regclass),
+  CONSTRAINT currency_identificator PRIMARY KEY (currency_id)
+)
+WITH (
+  OIDS=TRUE
+);
+ALTER TABLE public.currency
+  OWNER TO postgres;
+
+
+
+CREATE TABLE public.users
+(
+  name character varying(80) NOT NULL,
+  lastname character varying(80) NOT NULL,
+  user_id integer NOT NULL DEFAULT nextval('users_seq_id'::regclass),
+  login character varying(80) NOT NULL,
+  password character varying(80) NOT NULL,
+  email character varying(80),
+  CONSTRAINT customers_identificator PRIMARY KEY (user_id)
+)
+WITH (
+  OIDS=TRUE
+);
+ALTER TABLE public.users
+  OWNER TO postgres;
+
+
 
 */
 
