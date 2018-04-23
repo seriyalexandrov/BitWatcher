@@ -55,9 +55,7 @@ export class PicksService{
   }
 
   getPrices(names:string) {
-    //return this.http.get(names)
-
-    return this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,ETC,GBX&tsyms=USD")
+    return this.http.get(names)
       .map(result => this.result = result);
   }
 
