@@ -19,6 +19,9 @@ export class PicksService{
   private tempUrl = "";
   result:any;
   names:any;
+  dailyHistory: any;
+  dailyInfo:any;
+
   constructor(private http: HttpClient) {}
 
 
@@ -59,4 +62,15 @@ export class PicksService{
       .map(result => this.result = result);
   }
 
+  getEntitiesDailyHistory(id:number): Observable<URLHackEntity[]>{
+    this.tempUrl = this.picksUrl + "/getCurrenciesDailyHistoryForUser";
+    return this.http.get(`${this.tempUrl}/${id}`)
+      .map(result => this.dailyHistory = result)
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getDailyHistory(names:string) {
+    return this.http.get(names)
+      .map(result => this.dailyInfo = result);
+  }
 }

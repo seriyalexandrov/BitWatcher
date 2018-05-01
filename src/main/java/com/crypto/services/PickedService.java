@@ -6,6 +6,7 @@ import com.crypto.entities.URLhack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -45,4 +46,14 @@ public class PickedService{
       return str;
   }
 
+  public List<URLhack> getDailyHistoryByUser(DBUser user){
+    List<URLhack> urls = new ArrayList<>();
+    List<DBPicked> arr = pickedRepository.findAllByUser(user);
+    for(int i = 0; i < arr.size();i++){
+      URLhack str = new URLhack();
+      str.setMyURL("https://min-api.cryptocompare.com/data/histoday?fsym=" + arr.get(i).getCurrency().getName() + "&tsym=USD&limit=30&aggregate=3&e=CCCAGG");
+      urls.add(str);
+    }
+    return urls;
+  }
 }

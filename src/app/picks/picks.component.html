@@ -1,11 +1,16 @@
 <body>
-FUKK DAT BITCH
-<h1>{{str}}</h1>
+FROM PICKS COMPONENT
+<!--{{entitiesDailyHistory[2]["myURL"]}}-->
+123
 <div *ngIf="cryptos">
   <div id="crypto-container" *ngFor="let crypto of objectKeys(cryptos)">
     <span class="left">{{ crypto }}</span>
     <span class="right">{{ cryptos[crypto].USD | currency:'USD':true}}</span>
   </div>
 </div>
+<div>
+  <chart [options]="options"></chart>
+</div>
+
 
 </body>

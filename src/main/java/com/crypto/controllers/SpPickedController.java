@@ -9,16 +9,13 @@ import com.crypto.services.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "http://localhost:8090")
 @RestController
 @RequestMapping("/api/picked")
 public class SpPickedController {
@@ -52,6 +49,11 @@ public class SpPickedController {
   @RequestMapping("/getCurrenciesForUser/{id}")
   public URLhack getCurrenciesNames(@PathVariable Integer id){
     return pickedService.getCurrenciesByUser(userRepository.findOne(id));
+  }
+
+  @RequestMapping("/getCurrenciesDailyHistoryForUser/{id}")
+  public List<URLhack> getCurrenciesDailyHistory(@PathVariable Integer id){
+    return pickedService.getDailyHistoryByUser(userRepository.findOne(id));
   }
 
 
