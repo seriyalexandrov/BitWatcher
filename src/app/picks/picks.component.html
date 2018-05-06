@@ -8,6 +8,10 @@ FROM PICKS COMPONENT
     <span class="right">{{ cryptos[crypto].USD | currency:'USD':true}}</span>
   </div>
 </div>
+
+
+<app-user-form></app-user-form>
+
 <div>
   <chart [options]="options"></chart>
 </div>

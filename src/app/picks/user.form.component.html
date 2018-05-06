@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>New User</h1>
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name"
+             required
+             [(ngModel)]="model.name" name="name">
+    </div>
+
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input type="text" class="form-control" id="lastname"
+             required
+             [(ngModel)]="model.lastname" name="lastname" >
+    </div>
+
+    <div class="form-group">
+      <label for="login">Login</label>
+      <input type="text" class="form-control" id="login"
+             required
+             [(ngModel)]="model.login" name="login">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" class="form-control" id="password"
+             required
+             [(ngModel)]="model.password" name="password">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email"
+             [(ngModel)]="model.email" name="email">
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+
+  </form>
+</div>
+
+
